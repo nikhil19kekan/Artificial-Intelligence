@@ -3,7 +3,7 @@ import sys
 
 #this function reads those line from file where theres a path from sourceCity
 def readFileLine(sourceCity):
-	f=open("C:\Users\Nikhil\PycharmProjects\AI1\AI-ass1\input1.txt","r")
+	f=open("input1.txt","r")
 	list=[]
 	for line in f:
 		if (sourceCity in line):
