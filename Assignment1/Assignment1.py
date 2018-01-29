@@ -17,17 +17,20 @@ def readFileLine(sourceCity):
 	f.close()
 	return list
 
-#this function is just to help sorting the fringe
+#this function is Key to help sorting the fringe
 def getDistance(line):
 	return int(line.split()[-1])
 
-#this function is to add paths from specified city into the fringe
+#this function is to add paths from specified city 
+#into the fringe along with respective actual and cumulative costs
 def addInFringe(source,cumuD):
 	for l in readFileLine(source):
 		cumu=int(cumuD)+int(l.split()[2])
 		fringe.append(l.split()[0]+" "+ l.split()[1]+" "+ l.split()[2]+" "+ str(cumu))
 	return fringe
 
+#This function backtracks the actual optimal 
+#path by searching cumulitive cost minus actual cost
 def backTrack(fringe):	
 	backList=[]
 	source=fringe[-1].split()[0]
@@ -46,7 +49,9 @@ def backTrack(fringe):
 			continue
 	return backList[:len(backList)-1]
 	
-#This function includes actual algorithmic steps		
+#This function includes actual algorithmic steps
+#extract node check if its goal then check if it exists in closed Set
+#if not then expand it by addding its neighbours in fringe		
 def algorithm(sourceCity,goal,fringe,closedSet,index):
 	while(index<len(fringe)):		
 		node=fringe[index]
@@ -64,7 +69,8 @@ def algorithm(sourceCity,goal,fringe,closedSet,index):
 		print("distance: infinity\nroute:none\n")
 		return ""
 	return backTrack(fringe[:index])
-#main
+
+#main process and function calls
 source=sys.argv[1]
 goal=sys.argv[2]
 closedSet=[]
