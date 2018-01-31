@@ -19,13 +19,13 @@ def readFileLine(fileName,sourceCity):
 
 #this function is Key to help sorting the fringe
 def getDistance(line):
-	return int(line.split()[-1])
+	return float(line.split()[-1])
 
 #this function is to add paths from specified city 
 #into the fringe along with respective actual and cumulative costs
 def addInFringe(source,cumuD,fileName):
 	for l in readFileLine(fileName,source):
-		cumu=int(cumuD)+int(l.split()[2])
+		cumu=float(cumuD)+float(l.split()[2])
 		fringe.append(l.split()[0]+" "+ l.split()[1]+" "+ l.split()[2]+" "+ str(cumu))
 	return fringe
 
@@ -35,15 +35,15 @@ def backTrack(fringe):
 	backList=[]
 	source=fringe[-1].split()[0]
 	dest=fringe[-1].split()[1]
-	cost=int(fringe[-1].split()[2])
-	cumuCost=int(fringe[-1].split()[3])
+	cost=float(fringe[-1].split()[2])
+	cumuCost=float(fringe[-1].split()[3])
 	backList.append(source+" to "+dest+", "+str(cost)+" km\n")
 	for l in sorted(fringe,key=getDistance,reverse=True):
-		if(int(l.split()[-1])==(cumuCost-cost) and l.split()[1]==source):
+		if(float(l.split()[-1])==(cumuCost-cost) and l.split()[1]==source):
 			source=l.split()[0]
 			dest=l.split()[1]
-			cost=int(l.split()[2])
-			cumuCost=int(l.split()[-1])
+			cost=float(l.split()[2])
+			cumuCost=float(l.split()[-1])
 			backList.append(source+" to "+dest+", "+str(cost)+" km\n")
 		else:
 			continue
