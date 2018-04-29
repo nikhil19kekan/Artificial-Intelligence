@@ -1,0 +1,21 @@
+#
+(operator
+	movefrompeg
+		(params 
+			(<b> Object)
+			(<from> Object)
+			(<to> Object))
+		(preconds
+			(on <b> <from>)
+			(smaller <b> <from>)
+			(smaller <b> <to>)
+			(clear <b>)
+			(clear <to>))
+		(effects
+			(del on <b> <from>)
+			(on <b> <to>)
+			(smaller <b> <from>)
+			(smaller <b> <to>)
+			(clear <from>)
+			(del clear <to>)
+			(clear <b>)))

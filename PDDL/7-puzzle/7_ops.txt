@@ -1,0 +1,9 @@
+#
+(operator
+	move
+	(params
+		(<from> Object) (<to> Object) (<tile> Object))
+	(preconds
+		(adj <from> <to>) (adj <to> <from>) (at <tile> <from>) (empty <to>))
+	(effects
+		(adj <from> <to>) (adj <to> <from>) (at <tile> <to>) (empty <from>) (del empty <to>)))
